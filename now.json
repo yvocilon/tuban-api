@@ -1,0 +1,8 @@
+{
+  "name": "tuban-api",
+  "version": 2,
+  "env": {
+    "CONNECTION_STRING": "@connection-string",
+    "SECRET": "@secret"
+  }
+}
