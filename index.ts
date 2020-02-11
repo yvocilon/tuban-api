@@ -45,6 +45,7 @@ app.post("/tasks", auth.authenticate("jwt", { session: false }), async function(
   task.save();
 
   res.statusCode = 201;
+  res.json(task);
   res.end();
 });
 
