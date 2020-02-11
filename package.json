@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "ts-node .",
-    "build": "tsc index.ts --outDir ./build"
+    "build": "tsc ./index.ts --outDir ./build"
   },
   "author": "",
   "license": "ISC",
