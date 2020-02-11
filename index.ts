@@ -48,6 +48,21 @@ app.post("/tasks", auth.authenticate("jwt", { session: false }), async function(
   res.end();
 });
 
+app.delete(
+  "/tasks/:id",
+  auth.authenticate("jwt", { session: false }),
+  async function(req, res, next) {
+    const user = req.user as User;
+
+    const { id } = req.params;
+
+    const task = await TaskModel.deleteOne({ _id: id, user });
+
+    res.statusCode = 204;
+    res.end();
+  }
+);
+
 app.post(
   "/signup",
   auth.authenticate("signup", { session: false }),
