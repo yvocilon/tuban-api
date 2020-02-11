@@ -63,6 +63,27 @@ app.delete(
   }
 );
 
+app.put(
+  "/tasks/:id",
+  auth.authenticate("jwt", { session: false }),
+  async function(req, res, next) {
+    const user = req.user as User;
+
+    const { id } = req.params;
+    const { title, lane } = req.body;
+
+    const task = await TaskModel.findOne({ _id: id, user });
+
+    task.title = title;
+    task.lane = lane;
+
+    task.save();
+
+    res.statusCode = 204;
+    res.end();
+  }
+);
+
 app.post(
   "/signup",
   auth.authenticate("signup", { session: false }),
