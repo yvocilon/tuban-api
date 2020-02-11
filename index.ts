@@ -6,6 +6,7 @@ import * as jwt from "jsonwebtoken";
 import * as mongoose from "mongoose";
 import { TaskModel } from "./model/task";
 import { User } from "./model/user";
+import * as cors from "cors";
 
 require("dotenv").config();
 
@@ -15,6 +16,8 @@ mongoose.connect(process.env.CONNECTION_STRING, {
 mongoose.connection.on("error", error => console.log(error));
 
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(auth.initialize());
