@@ -4,8 +4,8 @@ import * as session from "express-session";
 import * as bodyParser from "body-parser";
 import * as jwt from "jsonwebtoken";
 import * as mongoose from "mongoose";
-import { TaskModel } from "./model/task";
 import { User } from "./model/user";
+import { TaskModel } from "./model/task";
 import * as cors from "cors";
 
 require("dotenv").config();

@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node .",
-    "build": "tsc ./index.ts --outDir ./build"
+    "start-dev": "ts-node .",
+    "start": "node ./build/index.js",
+    "build": "tsc ./index.ts --outDir ./build",
+    "postinstall": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +22,8 @@
     "mongoose": "^5.8.11",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "typescript": "^3.7.5"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -31,7 +34,6 @@
     "@types/passport": "^1.0.2",
     "@types/passport-jwt": "^3.0.3",
     "@types/passport-local": "^1.0.33",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.7.5"
+    "ts-node": "^8.6.2"
   }
 }
