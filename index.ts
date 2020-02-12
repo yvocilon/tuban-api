@@ -5,7 +5,7 @@ import * as bodyParser from "body-parser";
 import * as jwt from "jsonwebtoken";
 import * as mongoose from "mongoose";
 import { User } from "./model/user";
-// import { TaskModel } from "./model/task";
+import { TaskModel } from "./model/task";
 import * as cors from "cors";
 
 require("dotenv").config();
@@ -24,69 +24,69 @@ app.use(auth.initialize());
 
 app.get("/", (req, res) => res.send("hello world"));
 
-// app.get("/tasks", auth.authenticate("jwt", { session: false }), async function(
-//   req,
-//   res,
-//   next
-// ) {
-//   const user = req.user as User;
+app.get("/tasks", auth.authenticate("jwt", { session: false }), async function(
+  req,
+  res,
+  next
+) {
+  const user = req.user as User;
 
-//   const tasks = await TaskModel.find({ user: user._id });
-//   res.json(tasks);
-// });
+  const tasks = await TaskModel.find({ user: user._id });
+  res.json(tasks);
+});
 
-// app.post("/tasks", auth.authenticate("jwt", { session: false }), async function(
-//   req,
-//   res,
-//   next
-// ) {
-//   const user = req.user as User;
+app.post("/tasks", auth.authenticate("jwt", { session: false }), async function(
+  req,
+  res,
+  next
+) {
+  const user = req.user as User;
 
-//   const { title, lane } = req.body;
+  const { title, lane } = req.body;
 
-//   const task = await TaskModel.create({ title, lane, user });
-//   task.save();
+  const task = await TaskModel.create({ title, lane, user });
+  task.save();
 
-//   res.statusCode = 201;
-//   res.json(task);
-//   res.end();
-// });
+  res.statusCode = 201;
+  res.json(task);
+  res.end();
+});
 
-// app.delete(
-//   "/tasks/:id",
-//   auth.authenticate("jwt", { session: false }),
-//   async function(req, res, next) {
-//     const user = req.user as User;
+app.delete(
+  "/tasks/:id",
+  auth.authenticate("jwt", { session: false }),
+  async function(req, res, next) {
+    const user = req.user as User;
 
-//     const { id } = req.params;
+    const { id } = req.params;
 
-//     const task = await TaskModel.deleteOne({ _id: id, user });
+    const task = await TaskModel.deleteOne({ _id: id, user });
 
-//     res.statusCode = 204;
-//     res.end();
-//   }
-// );
+    res.statusCode = 204;
+    res.end();
+  }
+);
 
-// app.put(
-//   "/tasks/:id",
-//   auth.authenticate("jwt", { session: false }),
-//   async function(req, res, next) {
-//     const user = req.user as User;
+app.put(
+  "/tasks/:id",
+  auth.authenticate("jwt", { session: false }),
+  async function(req, res, next) {
+    const user = req.user as User;
 
-//     const { id } = req.params;
-//     const { title, lane } = req.body;
+    const { id } = req.params;
+    const { title, lane } = req.body;
 
-//     const task = await TaskModel.findOne({ _id: id, user });
+    const task = await TaskModel.findOne({ _id: id, user });
 
-//     task.title = title;
-//     task.lane = lane;
+    task.title = title;
+    task.lane = lane;
 
-//     task.save();
+    task.save();
 
-//     res.statusCode = 204;
-//     res.end();
-//   }
-// );
+    res.statusCode = 204;
+    res.end();
+  }
+);
 
 app.post(
   "/signup",
