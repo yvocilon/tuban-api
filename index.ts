@@ -8,6 +8,8 @@ import { User } from "./model/user";
 import { TaskModel } from "./model/task";
 import * as cors from "cors";
 
+import "./auth/Hello";
+
 require("dotenv").config();
 
 mongoose.connect(process.env.CONNECTION_STRING, {
